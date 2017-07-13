@@ -1,2 +1,2 @@
 REM NUnit test command to execute in windows batch command in Jenkins
-powershell.exe -Command "& 'D:\Program Files (x86)\NUnit.org\nunit-console\RunAllNunitProject.ps1' '%WORKSPACE%\' '%WORKSPACE%\TestOutput\'"
+%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe -Command "& 'D:\Program Files (x86)\NUnit.org\nunit-console\RunAllNunitProject.ps1' -RootPath '%WORKSPACE%\' -TestOutputPath '%WORKSPACE%\TestOutput\'"
