@@ -1,8 +1,4 @@
-
-$RootPath=$args[0]
-$TestOutputPath=$args[1]
-
-$NunitCommand = 'D:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe'
+param ($RootPath, $TestOutputPath, $NunitCommand = 'D:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe')
 
 if(!(Test-Path -Path $TestOutputPath )){
     New-Item -ItemType directory -Path $TestOutputPath;
