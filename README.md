@@ -13,8 +13,11 @@ Prerequisite
 - Windows SDK 7 SDK
 - Windows SDK 8.1
 - Microsoft WebDeploy 3.6
+- Open Cover
 
 Folder
 =============
 NUnit3  - All program or script for NUnit3
 - Powershell script to execute Nunit3 console program for all the *.nunit Nunit configuration project file. The test result will generate out and the result file name same as the Nunit configuration project filename.
+
+OpenCover
