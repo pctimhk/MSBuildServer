@@ -1,0 +1,1 @@
+call "D:\Program Files\7-Zip\7z.exe" %*
