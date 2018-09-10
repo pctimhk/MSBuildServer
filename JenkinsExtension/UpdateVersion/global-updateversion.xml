@@ -1,0 +1,36 @@
+<project name="PreBuild" default="UpdateVersion" basedir=".">
+  <description>
+    PreBuild package file
+  </description>
+  <!-- set global properties for this build -->
+  
+  <target name="UpdateVersion">
+    <condition property="myBuildNumberString" value="${BUILD_NUMBER}" else="*">
+        <isset property="BUILD_NUMBER"/>
+    </condition>
+
+    <replaceregexp match="\[assembly\: AssemblyVersion\(\&quot;(\d+)\.(\d+)\.(\d+)\.(\d+|\*)\&quot;\)\]" replace="[assembly: AssemblyVersion(&quot;\1.\2.\3.${myBuildNumberString}&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+    <replaceregexp match="\[assembly\: AssemblyFileVersion\(\&quot;(\d+)\.(\d+)\.(\d+)\.(\d+|\*)\&quot;\)\]" replace="[assembly: AssemblyFileVersion(&quot;\1.\2.\3.${myBuildNumberString}&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+    <replaceregexp match="\[assembly\: AssemblyDescription\(\&quot;(.*)\&quot;\)\]" replace="[assembly: AssemblyDescription(&quot;Build_${BUILD_NUMBER}.The assembly is built by build server under ${BUILD_URL} and build series is ${BUILD_TAG}.\1&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+
+  </target>
+  
+</project>

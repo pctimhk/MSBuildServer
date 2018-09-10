@@ -1,4 +1,4 @@
-@ECHO ON
+@ECHO OFF
 Set ApacheAntBinPath=D:\Programs\ApacheAnt\apache-ant-1.10.5\bin\ant.bat
 
 ECHO execute ant for %1 build file

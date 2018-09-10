@@ -1,0 +1,56 @@
+<project name="XDT" default="default" basedir=".">
+  <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+
+  <description>
+    Applying XML Document Transformations by lookup related configuration files
+  </description>
+  <!-- set global properties for this build -->
+  
+  <target name="default">
+    <property name="dotnetxdt.bin" value="D:\Programs\JenkinsExtension\xdt\dotnet-xdt.bat"/>
+
+    <if>
+     <equals arg1="${ENV}" arg2="" />
+     <then>
+       <echo message="ENV property is empty." />
+       
+        <if>
+         <equals arg1="${GIT_BRANCH}" arg2="" />
+         <then>
+            <echo message="GIT_BRANCH property is empty. The value DEV will be used." />
+            <property name="MyConfigPrefixName" value="DEV" />
+         </then>
+         <else>
+            <echo message="GIT_BRANCH property or default value DEV will be used." />
+            <condition property="MyGitBranch" value="${GIT_BRANCH}" else="BCTGit/DEV">
+                <isset property="GIT_BRANCH"/>
+            </condition>
+
+            <propertyregex property="MyConfigPrefixName" input="${MyGitBranch}" regexp="\w+\/(.*)" select="\1" casesensitive="false" />
+         </else>
+        </if>
+     </then>
+     <else>
+       <echo message="ENV property will be used" />
+       <property name="MyConfigPrefixName" value="${ENV}" />
+     </else>
+    </if>
+
+    <echo message="Config prefix name is ${MyConfigPrefixName}" />
+
+    <fileset id="xdtconfig.fileset" dir=".">
+      <include name="**/*.${MyConfigPrefixName}.xdt.xml" />
+      <exclude name="**/package" />
+      <exclude name="**/package/**" />
+    </fileset>
+    
+    <apply executable="${dotnetxdt.bin}" failonerror="true" force="true" parallel="false" verbose="true">
+      <srcfile />
+      <targetfile/>
+      <fileset refid="xdtconfig.fileset" />
+      <mapper type="regexp" from="^(.*)\.\w+\.xdt\.xml" to="\1"/>
+    </apply>
+    
+  </target>
+  
+</project>
