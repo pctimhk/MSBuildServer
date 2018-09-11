@@ -1,7 +1,7 @@
 @ECHO OFF
-Set RootDir=%~dp0
-Set AntExt="%RootDir%..\ant.bat
+
+call %~dp0..\SETENV.bat
 Set BuildFile=global-updateversion.xml
 
-xcopy /y /v /f %RootDir%%BuildFile% %WORKSPACE%
-%AntExt%" %WORKSPACE%\%BuildFile%
+xcopy /y /v /f %~dp0%BuildFile% %WORKSPACE%
+call "%AntExtBin%" "%WORKSPACE%\%BuildFile%"

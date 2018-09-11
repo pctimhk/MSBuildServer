@@ -1,13 +1,12 @@
 @ECHO OFF
-Set RootDir=%~dp0
-Set AntExt=ant.bat
-Set PostBuildScript=%WORKSPACE%\build.xml
+
+call %~dp0\SETENV.bat
 
 ECHO Execute the global postbuild steps
 
-ECHO Check prebuild script exists or not in %PostBuildScript%
+ECHO Check prebuild script exists or not in %PostBuildScriptPath%
 if exist %PostBuildScript% (
-   call %RootDir%\%AntExt% %PostBuildScript%
+   call "%AntExtBin%" "%PostBuildScriptPath%"
 )
 
 ECHO Completed global postbuild steps

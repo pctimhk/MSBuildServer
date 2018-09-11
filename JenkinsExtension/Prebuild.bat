@@ -1,7 +1,6 @@
-@ECHO ON
-Set RootDir=%~dp0
-Set AntExt=%RootDir%\ant.bat
-Set PreBuildScript=%WORKSPACE%\prebuild.xml
+@ECHO OFF
+
+call %~dp0\SETENV.bat
 
 ECHO Execute the global prebuild steps
 
@@ -14,9 +13,10 @@ call "%~dp0%UpdateVersion\UpdateVersion.bat"
 ECHO Execute XDT (XML Documentation Transformation) for different environment
 call "%~dp0xdt\xdt.bat"
 
-ECHO Check prebuild script exists or not in %PreBuildScript%
-if exist %PreBuildScript% (
-   call %AntExt% %PreBuildScript%
+ECHO Check prebuild script exists or not in %PreBuildScriptPath%
+if exist %PreBuildScriptPath% (
+   ECHO Prebuild script exists and the script will be executed.
+   call "%AntExtBin%" "%PreBuildScriptPath%"
 )
 
 ECHO Completed global prebuild steps
