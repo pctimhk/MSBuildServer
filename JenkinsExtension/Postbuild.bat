@@ -4,8 +4,9 @@ call %~dp0\SETENV.bat
 
 ECHO Execute the global postbuild steps
 
-ECHO Check prebuild script exists or not in %PostBuildScriptPath%
-if exist %PostBuildScript% (
+ECHO Check postbuild script exists or not in %PostBuildScriptPath%
+if exist %PostBuildScriptPath% (
+   ECHO Postbuild script exist and it will be executed.
    call "%AntExtBin%" "%PostBuildScriptPath%"
 )
 
