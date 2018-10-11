@@ -4,6 +4,10 @@ call %~dp0\SETENV.bat
 
 ECHO Execute the global prebuild steps
 
+ECHO DRY checking (duplicated code checking)
+call "D:\Programs\pmd_6.7.0\bin\cpd.bat" --ignore-usings --exclude "**/Migrations" --exclude "**/Initializer --exclude "**/*Test.cs --exclude "**/*.Designer.cs" --minimum-tokens 100 --files %cd% --language cs --format xml > %cd%\cpd.xml
+SET ERRORLEVEL=0
+
 ECHO generate buildinfo.properties
 call "%~dp0%generatebuildinfo.bat
 
