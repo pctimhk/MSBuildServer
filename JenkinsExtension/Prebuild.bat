@@ -1,5 +1,8 @@
 @ECHO OFF
 
+ECHO Reset Git Repo
+git reset --hard 
+
 call %~dp0\SETENV.bat
 
 ECHO Execute the global prebuild steps

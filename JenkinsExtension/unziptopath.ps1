@@ -8,7 +8,8 @@ $folderPath = [System.IO.Path]::GetDirectoryName($zipPath)
 $BinFolderPath = "$folderPath\$fileName"
 
 if(Test-Path -Path $BinFolderPath ) {
-    Remove-Item "$BinFolderPath" -Force -Recurse
+    Write-Output "Remove all file in folder $BinFolderPath"
+    Remove-Item "$BinFolderPath\*" -Force -Recurse
 }
 Try 
 {
@@ -30,9 +31,8 @@ Try
 }
 Catch 
 {
-    $ErrorMessage = $_.Exception.Message
-    $FailedItem = $_.Exception.ItemName
-    Write-Host "Error found. Error: $ErrorMessage, Item: $FailedItem" -ForegroundColor Red
+    $string_err = $_ | Out-String
+    Write-Host $string_err -ForegroundColor Red
     exit 1
     break
 }
