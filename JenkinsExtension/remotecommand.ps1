@@ -7,7 +7,7 @@
 $scriptBlock = [Scriptblock]::Create($Script)
 
 try {
-    write-host "start sending remote powershell command to the host $RemoteHost"
+    write-host "start sending remote powershell command '$Script' to the host $RemoteHost"
     Invoke-Command -ComputerName $RemoteHost -ErrorAction Stop -ScriptBlock $scriptBlock -ArgumentList $InputArgument
     write-host "remote powershell command completed"
 } catch {
