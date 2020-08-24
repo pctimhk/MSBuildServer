@@ -21,24 +21,54 @@ Prerequisite
     https://github.com/danielpalme/OpenCoverToCoberturaConverter
     
 
-Feature
+Features
 =============
+7zip
+- Extract the zip file
+> JenkinsExtension/7z.bat
+- Unzip the file to folder (UNC path support)
+> JenkinsExtension/unziptopath.ps1
+
+Apache Ant
+- Start the apache ant based on the Jenkins build file and build properties
+> JenkinsExtension/ant.bat
+
+Microsoft SQL Server
+- Drop the database
+> JenkinsExtension/DropDb.bat
+
 NUnit3  - All program or script for NUnit3
 - Powershell script to execute Nunit3 console program for all the *.nunit Nunit configuration project file. The test result will generate out and the result file name same as the Nunit configuration project filename.
-> VSTest.bat for Visual Studio 2013 installed
-> VS2017Test.bat for Visual Studio 2017 installed
+> JenkinsExtension/VSTest.bat for Visual Studio 2013 installed
+> JenkinsExtension/VS2017Test.bat for Visual Studio 2017 installed
 
 OpenCover
 - Execute nunit test with open cover and html report generation
 
 IIS Web Deploy and Control
 - Rename the application name
-> WebDeploy/UpdateIISWebAppName.ps1
+> JenkinsExtension/WebDeploy/UpdateIISWebAppName.ps1
 - Change the web deploy parameter
-> WebDeploy/ReplaceWebDeployParameter.ps1
-- Start the IIS app pool
-> remoteStartAppPool.ps1
+> JenkinsExtension/WebDeploy/ReplaceWebDeployParameter.ps1
+- Remote start the IIS app pool
+> JenkinsExtension/remoteStartAppPool.ps1
+- Remote start the IIS app pool
+> JenkinsExtension/remoteStopAppPool.ps1
+
+Microsoft Windows Remote Control
+- Start the Microsoft Windows Service
+> JenkinsExtension/remoteStartWinService.ps1
+- Stop the Microsoft Windows Service
+> JenkinsExtension/remoteStopWinService.ps1
+- Wait the process end in windows task
+> JenkinsExtension/remoteWaitProcess.ps1
+
+Microsoft XDT for Visual Studio 2013 and non web.config and app.config file
+> JenkinsExtension/xdt
 
 Powershell execute remote command
-> remotecommand.ps1
+> JenkinsExtension/remotecommand.ps1
 
+StyleCop
+- Start the Style Cop to check the source code
+> JenkinsExtension/StyleCopCLI.bat
