@@ -1,6 +1,6 @@
 # MSBuildServer for .NET 4.0.0 - 4.5.2
 
-Extra script or customize program to create a Microsoft .NET 4.0.0 - 4.5.2 Build Server with Unit Test feature.
+Extra script or customize program to create a Microsoft .NET 4.0.0 - 4.5.2 Build Server with Unit Test feature in Windows Jenkins Build Server.
 
 Prerequisite
 =============
@@ -21,10 +21,24 @@ Prerequisite
     https://github.com/danielpalme/OpenCoverToCoberturaConverter
     
 
-Folder
+Feature
 =============
 NUnit3  - All program or script for NUnit3
 - Powershell script to execute Nunit3 console program for all the *.nunit Nunit configuration project file. The test result will generate out and the result file name same as the Nunit configuration project filename.
+> VSTest.bat for Visual Studio 2013 installed
+> VS2017Test.bat for Visual Studio 2017 installed
 
 OpenCover
 - Execute nunit test with open cover and html report generation
+
+IIS Web Deploy and Control
+- Rename the application name
+> WebDeploy/UpdateIISWebAppName.ps1
+- Change the web deploy parameter
+> WebDeploy/ReplaceWebDeployParameter.ps1
+- Start the IIS app pool
+> remoteStartAppPool.ps1
+
+Powershell execute remote command
+> remotecommand.ps1
+
