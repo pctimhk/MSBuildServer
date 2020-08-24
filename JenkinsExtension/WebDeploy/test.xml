@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <setParameter name="IIS Web Application Name" value="SPM_Web_UAT/" />
+  <setParameter name="Xrm-Web.config Connection String" value="Server=http://uatcrm01/SPM-UAT; Domain=bcthk01; Username=crmadmin02; Password=Dotnet@2012" />
+  <setParameter name="WebAppContext-Web.config Connection String" value="Data Source=UATCRM01;Initial Catalog=SPM.WebApp.UAT;Integrated Security=True" />
+  <setParameter name="com.bcthk.dotnet.common.entities.BaseContext-Web.config Connection String" value="com.bcthk.dotnet.common.entities.BaseContext_ConnectionString" />
+  <setParameter name="com.bcthk.dotnet.common.entities.CommonContext-Web.config Connection String" value="com.bcthk.dotnet.common.entities.CommonContext_ConnectionString" />
+</parameters>

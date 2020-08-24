@@ -1,14 +1,8 @@
-param ([string]$ParamFilePath, [string]$NewIISWebAppName)
+param ([string]$FilePath, [string]$NewIISWebAppName)
 
+$ParameterName = "IIS Web Application Name"
+$ParameterValue = $NewIISWebAppName
 
-if (Test-Path $ParamFilePath)
-{
-    Copy-Item "$ParamFilePath" -Destination "$ParamFilePath.org" -force
-
-    $content = Get-Content -path "$ParamFilePath"    
-    $content -replace "<setParameter name=`"IIS Web Application Name`" value=`"(.*)`" />", "<setParameter name=`"IIS Web Application Name`" value=`"$NewIISWebAppName`" />" |  Out-File $ParamFilePath -encoding utf8
-}
-else
-{
-    Write-Warning "$ParamFilePath file not found."
-}
+$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+Write-host $scriptDir
+& $scriptDir\ReplaceWebDeployParameter.ps1 -FilePath $FilePath -ParameterName $ParameterName -ParameterValue $NewIISWebAppName
