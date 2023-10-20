@@ -7,7 +7,7 @@
     },
     "Debug in E:\\Git\\xPRintToPDF": {
       "commandName": "Project",
-      "commandLineArgs": "-d \"E:\\Git\\xPrintToPDF\" -c \"echo cmdlet execute {0} {1}\""
+      "commandLineArgs": "-d \"E:\\Git\\xPrintToPDF\" -e \"DR.xdt.xml\" -c \"echo cmdlet execute {0} {1}\""
     }
   }
 }

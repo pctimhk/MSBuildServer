@@ -1,1 +1,1 @@
-%~dp0\start.bat E:\Git\xPrintToPDF echo 
+%~dp0\start.bat E:\Git\xPrintToPDF .DR.xdt.xml echo 

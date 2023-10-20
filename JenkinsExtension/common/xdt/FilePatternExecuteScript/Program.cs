@@ -17,6 +17,8 @@ namespace FilePatternExecuteScript
 
             [Option('c', "command", Required = true, HelpText = @"command to be executed. E.g. 'D:\CommandFolder\Command.exe {0} {1} -v' where the matched file name (regex = filePattern) will pass into {0} and the regex replace file name (regex = fileReplacePattern) will pass into {1}.")]
             public string? command { get; set; }
+            [Option('e', "fileendwith", Required = true, HelpText = @"file name end with pattern. E.g. .DR.xdt.xml")]
+            public string filenameEndwith { get; set; }
 
             [Option('p', "fileregex", Required = false, Default = defaultFilePattern, HelpText = "file name should match this regex which the filename will pass to {0} in command parameter. If not configure, the value is " + defaultFilePattern)]
             public string filePattern { get; set; }
@@ -44,7 +46,7 @@ namespace FilePatternExecuteScript
 
            var xdtFiles = Directory.GetFiles(o.folder ?? String.Empty, "*", SearchOption.AllDirectories).Where(path => reg.IsMatch(path)).ToList();
 
-           var files = xdtFiles.Where(s => s.EndsWith("DR.xdt.xml"));
+           var files = xdtFiles.Where(s => s.EndsWith(o.filenameEndwith));
 
            Console.ForegroundColor = ConsoleColor.Blue;
            Console.WriteLine("----Start----");
