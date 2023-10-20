@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "WSL": {
+      "commandName": "WSL2",
+      "environmentVariables": {},
+      "distributionName": ""
+    },
+    "Debug in E:\\Git\\xPRintToPDF": {
+      "commandName": "Project",
+      "commandLineArgs": "-d \"E:\\Git\\xPrintToPDF\" -c \"echo cmdlet execute {0} {1}\""
+    }
+  }
+}

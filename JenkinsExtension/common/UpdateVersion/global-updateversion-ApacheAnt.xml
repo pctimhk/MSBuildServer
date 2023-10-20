@@ -1,0 +1,39 @@
+<project name="PreBuild" default="UpdateVersion" basedir=".">
+  <description>
+    PreBuild package file
+  </description>
+  <!-- set global properties for this build -->
+  
+  <target name="UpdateVersion">
+    <condition property="myUatBuildNumberString" value="${UATBuildNumber}" else="0">
+        <isset property="UATBuildNumber"/>
+    </condition>
+    <condition property="myDevBuildNumberString" value="${DEVBuildNumber}" else="0">
+        <isset property="DEVBuildNumber"/>
+    </condition>
+
+    <replaceregexp match="\[assembly\: AssemblyVersion\(\&quot;(\d+)\.(\d+)\.(\d+)\.(\d+|\*)\&quot;\)\]" replace="[assembly: AssemblyVersion(&quot;\1.\2.${myUatBuildNumberString}.${myDevBuildNumberString}&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+    <replaceregexp match="\[assembly\: AssemblyFileVersion\(\&quot;(\d+)\.(\d+)\.(\d+)\.(\d+|\*)\&quot;\)\]" replace="[assembly: AssemblyFileVersion(&quot;\1.\2.${myUatBuildNumberString}.${myDevBuildNumberString}&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+    <replaceregexp match="\[assembly\: AssemblyDescription\(\&quot;(.*)\&quot;\)\]" replace="[assembly: AssemblyDescription(&quot;Dev build number is ${DEVBuildNumber} and Uat build number is ${UATBuildNumber}.The assembly is built by build server under ${BUILD_URL} and build series is ${BUILD_TAG}.\1&quot;)]" byline="true">
+      <fileset dir=".">
+         <include name="**/AssemblyInfo.cs" />
+         <exclude name="**/packages" />
+         <exclude name="**/packages/**" />
+      </fileset>
+    </replaceregexp>
+
+  </target>
+  
+</project>
