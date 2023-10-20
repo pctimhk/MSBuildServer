@@ -21,7 +21,8 @@ REM call "%~dp0%UpdateVersion\UpdateVersion.bat"
 
 ECHO Execute XDT (XML Documentation Transformation) for different environment
 ECHO Execute the command 'call "%~dp0xdt\xdt.bat" "%CD%"'
-call "%~dp0xdt\xdt.bat" "%CD%"
+ECHO CurrentBuildEnvironment = %CurrentBuildEnvironment%
+call "%~dp0xdt\xdt.bat" "%CD%" ".%CurrentBuildEnvironment%.xdt.xml"
 
 ECHO Check prebuild script exists or not in %PreBuildScriptPath%
 if exist %PreBuildScriptPath% (
